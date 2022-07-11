@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  journey-mongo: 
+    container_name: journey-mongo
+    image: mongo:4.4.6
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=journey-mongo
+      - MONGO_INITDB_ROOT_PASSWORD=journey-mongo
+      - MONGO_INITDB_DATABASE=journey-mongo
+      - MONGO_INITDB_USER=journey-mongo
+      - MONGO_INITDB_PASSWORD=journey-mongo
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - journey-mongo
+    environment:
+      - ME_CONFIG_BASICAUTH_USERNAME=journey-mongo
+      - ME_CONFIG_BASICAUTH_PASSWORD=journey-mongo
+      - ME_CONFIG_MONGODB_SERVER=journey-mongo
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=journey-mongo
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=journey-mongo
+networks:
+  default:
+    name: journey_network
+
+
+    
