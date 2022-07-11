@@ -1,0 +1,9 @@
+{
+    "name": "journey",
+    "version": "0.0.0",
+    "private": true,
+    "workspaces": [
+      "journey-back",
+      "journey-front"
+    ]
+  }

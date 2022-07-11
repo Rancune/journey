@@ -1,0 +1,6 @@
+[submodule "journey-front"]
+	path = journey-front
+	url = https://github.com/LucxxM/journey-front.git
+[submodule "journey-back"]
+	path = journey-back
+	url = https://github.com/LucxxM/journey-back.git
