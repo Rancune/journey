@@ -7,3 +7,6 @@ git submodule update --init --recursive
 npm install
 
 code .
+
+docker compose up
+
