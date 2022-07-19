@@ -10,12 +10,14 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOTPASSWORD}
       - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+    links:
+      - journey-mongo-test-db
   mongo-express-test:
     container_name: mongo-express-test
     image: mongo-express
     restart: always
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - journey-mongo-test
     environment:
