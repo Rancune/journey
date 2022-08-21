@@ -5,6 +5,9 @@
     "workspaces": [
         "journey-back",
         "journey-front"
-    ]
-
+    ],
+    "dependencies": {
+        "firebase": "^9.9.3",
+        "firebase-admin": "^11.0.1"
+    }
 }
