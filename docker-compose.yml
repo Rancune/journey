@@ -2,7 +2,7 @@ version: '3.8'
 services:
   journey-mongo-test: 
     container_name: journey-mongo-test
-    image: mongo:latest
+    image: mongo:4.4.6
     restart: always
     ports:
       - "27017:27017"
