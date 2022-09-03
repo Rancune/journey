@@ -25,7 +25,7 @@ services:
       - TZ=${SERVER_TIMEZONE}
       - NODE_ENV=production
     depends_on:
-      - "journey-mongo-test-db"
+      - "journey-mongo-test"
     labels:
       - "traefik.http.routers.journey-back.rule=Host(`${BACKEND_HOST}`)"
   journey-mongo-test:
@@ -38,8 +38,6 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOTPASSWORD}
       - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
-    links:
-      - journey-mongo-test-db
   # mongo-express-test:
   #   container_name: mongo-express-test
   #   image: mongo-express
