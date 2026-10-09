@@ -1,3 +1,9 @@
 node_modules
 .env
-.env.test
+.env.test.env.*
+!.env.example
+*.dump
+secrets/
+*-credentials.json
+*.pem
+*.key

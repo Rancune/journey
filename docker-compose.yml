@@ -5,12 +5,10 @@ services:
     image: traefik:v2.8
     restart: always
     # Enables the web UI and tells Traefik to listen to docker
-    command: --api.insecure=true --providers.docker
+    command: --providers.docker --providers.docker.exposedbydefault=false
     ports:
       # The HTTP port
       - "127.0.0.1:${JOURNEY_PORT}:80"
-      # The Web UI (enabled by --api.insecure=true)
-      - "8084:8080"
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
@@ -21,12 +19,18 @@ services:
       context: ./journey-back/
       dockerfile: dockerfile
     user: "node"
+    env_file:
+      - ./journey-back/.env
     environment:
       - TZ=${SERVER_TIMEZONE}
       - NODE_ENV=production
+      - GOOGLE_APPLICATION_CREDENTIALS=/run/secrets/firebase-credentials.json
+    volumes:
+      - ./journey-back/secrets/firebase-credentials.json:/run/secrets/firebase-credentials.json:ro
     depends_on:
       - "journey-mongo-test"
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.journey-back.rule=Host(`${BACKEND_HOST}`)"
   journey-mongo-test:
     container_name: journey-mongo-test
